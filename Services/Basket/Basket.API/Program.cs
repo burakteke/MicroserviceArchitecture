@@ -1,5 +1,9 @@
+using Basket.Application.Interfaces;
+using Basket.Application.Services;
 using Basket.Domain.Settings;
+using Basket.Infrastructure.Interfaces;
 using Basket.Infrastructure.Redis;
+using Basket.Infrastructure.Repositories;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +23,9 @@ builder.Services.AddSingleton<RedisContext>(sp =>
     redis.Connect();
     return redis;
 });
+
+builder.Services.AddScoped<IBasketService, BasketService>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 var app = builder.Build();
 

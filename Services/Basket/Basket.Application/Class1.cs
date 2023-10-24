@@ -1,4 +1,4 @@
-﻿namespace Microservice.Shared
+﻿namespace Basket.Application
 {
     public class Class1
     {

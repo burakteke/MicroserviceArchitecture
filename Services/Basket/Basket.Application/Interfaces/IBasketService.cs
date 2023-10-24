@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Basket.Infrastructure.Interfaces
+namespace Basket.Application.Interfaces
 {
-    public interface IBasketRepository
+    public interface IBasketService
     {
         Task<Response<bool>> Delete(string userId);
         Task<Response<BasketDto>> GetBasket(string userId);
