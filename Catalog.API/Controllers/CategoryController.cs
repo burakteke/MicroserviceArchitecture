@@ -23,6 +23,13 @@ namespace Catalog.API.Controllers
             return CreateActionResultInstance(response);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            var response = await _categoryRepository.GetById(id);
+            return CreateActionResultInstance(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(Category category)
         {
