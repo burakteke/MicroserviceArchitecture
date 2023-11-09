@@ -29,5 +29,26 @@ namespace Catalog.API.Controllers
             var response = await _productRepository.CreateProduct(product);
             return CreateActionResultInstance(response);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProductById(string id)
+        {
+            var response = await _productRepository.GetProductById(id);
+            return CreateActionResultInstance(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var response = await _productRepository.DeleteProduct(id);
+            return CreateActionResultInstance(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(Product product)
+        {
+            var response = await _productRepository.UpdateProduct(product);
+            return CreateActionResultInstance(response);
+        }
     }
 }
