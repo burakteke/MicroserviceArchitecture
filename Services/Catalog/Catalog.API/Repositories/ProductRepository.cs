@@ -28,13 +28,13 @@ namespace Catalog.API.Repositories
         {
             var result = await _productCollection.DeleteOneAsync(x => x.Id == id);
 
-            if(result.DeletedCount > 0)
+            if (result.DeletedCount > 0)
             {
                 return Response<NoContent>.Success((int)HttpStatusCode.NoContent);
             }
             else
             {
-                return Response<NoContent>.Fail("Ürün bulunamadı",(int)HttpStatusCode.NotFound);
+                return Response<NoContent>.Fail("Ürün bulunamadı", (int)HttpStatusCode.NotFound);
             }
         }
 
@@ -42,9 +42,9 @@ namespace Catalog.API.Repositories
         {
             var result = await _productCollection.Find(product => true).ToListAsync();
 
-            if(result.Any())
+            if (result.Any())
             {
-                foreach(var item in result)
+                foreach (var item in result)
                 {
                     item.Category = await _categoryCollection.Find<Category>(x => x.Id == item.CategoryId).FirstAsync();
                 }
@@ -77,7 +77,7 @@ namespace Catalog.API.Repositories
         public async Task<Response<NoContent>> UpdateProduct(Product product)
         {
             var result = await _productCollection.FindOneAndReplaceAsync(p => p.Id == product.Id, product);
-            if(result == null) return Response<NoContent>.Fail("Ürün bulunamadı", (int)HttpStatusCode.NoContent);
+            if (result == null) return Response<NoContent>.Fail("Ürün bulunamadı", (int)HttpStatusCode.NoContent);
 
             return Response<NoContent>.Success((int)HttpStatusCode.NoContent);
         }
